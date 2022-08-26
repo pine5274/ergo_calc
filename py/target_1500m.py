@@ -33,5 +33,3 @@ for x in target:
     list.append({"2000m": sec_to_time(x),"2000m ave": sec_to_time(x/4), "1500m *5 ave": sec_to_time(calc_1500m_target(x)), "diff": sec_to_time(calc_1500m_target(x)- x/4)})
 
 df = pd.DataFrame(list)
-
-df.to_csv('./../dst/1500m_target_ave.csv')
