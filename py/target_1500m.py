@@ -1,9 +1,7 @@
 import pandas as pd
 import numpy as np
 import math
-import matplotlib.pyplot as plt
-from scipy import optimize
-from statistics import median
+import function
 
 def sec_to_time(time):
     m = math.floor(time / 60)
@@ -30,7 +28,12 @@ list = []
 target = np.arange(380, 511, 5)
 
 for x in target:
-    list.append({"2000m": sec_to_time(x),"2000m ave": sec_to_time(x/4), "1500m *5 ave": sec_to_time(calc_1500m_target(x)), "diff": sec_to_time(calc_1500m_target(x)- x/4)})
+    list.append({
+        "2000m": sec_to_time(x),
+        "2000m ave": sec_to_time(x/4),
+        "1500m *5 ave": sec_to_time(calc_1500m_target(x)),
+        "インターバルをやめる目安": sec_to_time(function.watt_to_pace(function.pace_to_watt(calc_1500m_target(x))*0.94))
+    })
 
 df = pd.DataFrame(list)
 
